@@ -1,11 +1,9 @@
-
 import pygame
 import random
 from time import sleep
 
 WIDTH = 500
 HEIGHT = 300
-
 
 class Scoreboard:
     def __init__(self, p1, p2, v) :
