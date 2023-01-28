@@ -70,7 +70,6 @@ def main():
                     Player2 = 0
                 elif event.key == pygame.K_SPACE:
                     run = False
-                ChangeDetected = True
                 if event.key == pygame.K_u:
                     r += 5
                     if r > 255:
