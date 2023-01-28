@@ -1,6 +1,10 @@
 # pygame-learning
 
-Welcome to pygame learning wiki! 
+The objective of this lesson:
 
-This wiki is to give a beginner level understanding to code in pygame. Games that are used in this repository are created for educational purposes.
+- Transition of states
 
+| Python File | Description                                    |
+| ----------- | ---------------------------------------------- |
+| state_1.py  | demostrates how to create 2 screens            |
+| state_2.py  | demostrates how to toggle between the 2 screen |

@@ -10,8 +10,22 @@ BACKGROUND = (255, 255, 255)
 player1_avatar = 'Cute Cat.png'
 player2_avatar = 'Gamer Girl.png'
 
+class Menu:
+    def __init__(self, label, img) :
+        self.font = pygame.font.Font('freesansbold.ttf', 32)
+
+        # LOADING AVATAR
+        # SELECTION
+        self.playerLabel = label
+        self.playerTextLabel = self.font.render(str(self.playerLabel), True, (0,0,0), (255,255,255))
+        self.playerTextRect = self.playerTextLabel.get_rect(center=(WIDTH//2, 200))
+
+        picture1 = pygame.image.load(img)
+        self.image1 = pygame.transform.scale(picture1, (100, 100))
+        self.imageRect1 = self.image1.get_rect(center=(WIDTH//2, 125))
+
 class Scoreboard:
-    def __init__(self, screen, p1, p2) :
+    def __init__(self, screen, p1, Player1_img, p2,Player2_img) :
         self.font = pygame.font.Font('freesansbold.ttf', 32)
         self.font1 = pygame.font.Font('freesansbold.ttf', 120)
 
@@ -30,7 +44,7 @@ class Scoreboard:
         self.playerOneScoreText = self.font.render(str(self.playerOneScore), True, (0,0,0), (255,255,255))           
         self.playerOneScoreRect = self.playerOneScoreText.get_rect(center=(100, 250))
 
-        picture1 = pygame.image.load(player1_avatar)
+        picture1 = pygame.image.load(Player1_img)
         self.image1 = pygame.transform.scale(picture1, (100, 100))
         self.imageRect1 = self.image1.get_rect(center=(100, 125))
         
@@ -43,7 +57,7 @@ class Scoreboard:
         self.playerTwoScoreText = self.font.render(str(self.playerTwoScore), True, (0,0,0), (255,255,255))   
         self.playerTwoScoreRect = self.playerTwoScoreText.get_rect(center=(WIDTH-100, 250))
 
-        picture2 = pygame.image.load(player2_avatar)
+        picture2 = pygame.image.load(Player2_img)
         self.image2 = pygame.transform.scale(picture2, (100, 100))
         self.imageRect2 = self.image1.get_rect(center=(WIDTH-100, 125))
 
@@ -89,28 +103,57 @@ def main():
     Player2 = 0
     state = 0
     run = True
+
+    ptr = 0
+    choices = [player1_avatar, player2_avatar]
+
+    image_map = {
+        'player1': None,
+        'player2': None
+    }
+
+    image_map_keys = list(image_map.keys())
+    image_map_keys_index = image_map_keys[0]
+
     while run:
         screen.fill(BACKGROUND)
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN and state == 0:
-                if event.key == pygame.K_a:
-                    Player1 += 1
-                elif event.key == pygame.K_s:
-                    Player2 += 1
-                elif event.key == pygame.K_z:
-                    if Player1 != 0:
-                        Player1 -= 1
-                elif event.key == pygame.K_x:
-                    if Player2 != 0:
-                        Player2 -= 1
-                elif event.key == pygame.K_r:
-                    Player1 = 0
-                    Player2 = 0
-                elif event.key == pygame.K_SPACE:
+            if event.type == pygame.KEYDOWN:
+                if state == 0:
+                    if event.key == pygame.K_x:
+                        ptr = (ptr + 1) % 2
+                    if event.key == pygame.K_p:
+                        image_map[image_map_keys_index] = choices[ptr]
+                        image_map_keys.remove(image_map_keys_index)
+                        if len(image_map_keys) != 0:
+                            image_map_keys_index = image_map_keys[0]
+                        else:
+                            state = 1
+                elif state == 1:
+                    if event.key == pygame.K_a:
+                        Player1 += 1
+                    elif event.key == pygame.K_s:
+                        Player2 += 1
+                    elif event.key == pygame.K_z:
+                        if Player1 != 0:
+                            Player1 -= 1
+                    elif event.key == pygame.K_x:
+                        if Player2 != 0:
+                            Player2 -= 1
+                    elif event.key == pygame.K_r:
+                        Player1 = 0
+                        Player2 = 0
+                if event.key == pygame.K_q:
                     run = False
 
         if state == 0:
-            screen1 = Scoreboard(screen, Player1, Player2)
+            screen0 = Menu(image_map_keys_index, choices[ptr])
+            screen.blit(screen0.playerTextLabel, screen0.playerTextRect)
+            screen.blit(screen0.playerTextLabel, screen0.playerTextRect)
+            screen.blit(screen0.image1, screen0.imageRect1)
+
+        elif state == 1:
+            screen1 = Scoreboard(screen, Player1, image_map['player1'], Player2, image_map['player2'])
             screen.blit(screen1.TextLabel, screen1.TextRect)
             screen.blit(screen1.playerOneTextLabel, screen1.playerOneTextRect)
             screen.blit(screen1.playerOneScoreText, screen1.playerOneScoreRect)
