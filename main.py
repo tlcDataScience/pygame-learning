@@ -1,87 +1,67 @@
 import pygame
+import random
 
-# Initialize Pygame
+# initialize pygame
 pygame.init()
 
-# Set the window size
-win_size = (400, 400)
+# initialize the screen
+screen = pygame.display.set_mode((600, 400))
 
-# Create a window
-screen = pygame.display.set_mode(win_size)
+# set the title of the window
+pygame.display.set_caption("Wordle Game")
 
-# Define colors
-white = (255, 255, 255)
-black = (0, 0, 0)
+# list of words to use in the game
+words = ["python", "java", "javascript", "ruby", "go", "perl"]
 
-# Draw the game board
-def draw_board():
-    pygame.draw.line(screen, black, [0, 133], [400, 133], 2)
-    pygame.draw.line(screen, black, [0, 266], [400, 266], 2)
-    pygame.draw.line(screen, black, [133, 0], [133, 400], 2)
-    pygame.draw.line(screen, black, [266, 0], [266, 400], 2)
+# randomly select a word from the list
+word = random.choice(words)
 
-# Check if a player has won
-def check_win(board):
-    # Check rows
-    for row in range(3):
-        if board[row][0] == board[row][1] == board[row][2] and board[row][0] != "":
-            return True
+# display the length of the word as underscores
+hidden_word = "_" * len(word)
 
-    # Check columns
-    for col in range(3):
-        if board[0][col] == board[1][col] == board[2][col] and board[0][col] != "":
-            return True
+# set the font for the text
+font = pygame.font.Font(None, 32)
 
-    # Check diagonals
-    if board[0][0] == board[1][1] == board[2][2] and board[0][0] != "":
-        return True
-    if board[0][2] == board[1][1] == board[2][0] and board[0][2] != "":
-        return True
+# display the initial state of the game
+text = font.render(hidden_word, True, (0, 0, 0))
+screen.blit(text, (200, 200))
+screen.fill((255, 255, 255))
 
-    return False
+# update the screen
+pygame.display.update()
 
-# Initialize the game board
-board = [["" for i in range(3)] for j in range(3)]
+# flag to check if the game is over
+game_over = False
 
-# Set the font
-font = pygame.font.SysFont("comicsansms", 72)
-
-# Set the player turn
-turn = "X"
-
-# Start the game loop
-running = True
-while running:
+# game loop
+while not game_over:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
-
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            pos = pygame.mouse.get_pos()
-            row, col = pos[1] // 133, pos[0] // 133
-
-            if board[row][col] == "":
-                board[row][col] = turn
-                if turn == "X":
-                    turn = "O"
-                else:
-                    turn = "X"
-
-    screen.fill(white)
-    
-    if check_win(board):
-        text = font.render("Player " + turn + " wins!", True, black)
-        screen.blit(text, [50, 50])
-        pygame.display.update()
-        
-    else:
-        draw_board()
-
-        for row in range(3):
-            for col in range(3):
-                text = font.render(board[row][col], True, black)
-                screen.blit(text, [(col * 133) + 50, (row * 133) + 50])
-    
-    pygame.display.update()
-
-    
+            game_over = True
+        elif event.type == pygame.KEYDOWN:
+            # get the key that was pressed
+            key = pygame.key.name(event.key)
+            if key in word:
+                # replace the underscores with the correct letters
+                for i in range(len(word)):
+                    if word[i] == key:
+                        hidden_word = hidden_word[:i] + key + hidden_word[i+1:]
+            else:
+                # display a message if the letter is not in the word
+                message = font.render("Wrong letter!", True, (255, 0, 0))
+                screen.blit(message, (200, 300))
+                
+            # update the screen with the new state of the game
+            text = font.render(hidden_word, True, (0, 0, 0))
+            screen.blit(text, (200, 200))
+            pygame.display.update()
+            
+            # check if the word has been completely guessed
+            if "_" not in hidden_word:
+                message = font.render("You won!", True, (0, 255, 0))
+                screen.blit(message, (200, 300))
+                pygame.display.update()
+                game_over = True
+                
+# quit pygame
+pygame.quit()
