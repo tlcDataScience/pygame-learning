@@ -11,6 +11,7 @@
 # 1. Objective
 
 - Inserting Images
+- Timer
 
 ## 2. Recap on Pygame Basics
 

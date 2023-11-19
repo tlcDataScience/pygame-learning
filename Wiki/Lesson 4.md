@@ -6,13 +6,13 @@
 | 2. Recap on Pygame Basics         | ---                    |
 | 3. Pygame Drawing Shape Objects   | ---                    |
 | 4. Review Questions               | To check understanding |
-| 5. Mini Project - Color Picker v2 | Bonus Task             |
+| 5. Mini Project - Color Picker V3 | Bonus Task             |
 
 # 1. Objective
 
 - Drawing Objects in Pygame
 - Animating Drawn Objects in Pygame
-- Mini Project - Digital Scoreboard v3 - making better themes with shapes
+- Mini Project - Color Picker V3
 
 # 2. Recap on Pygame Basics
 
@@ -524,4 +524,6 @@ Explanation: The parameters for the pygame.draw.ellipse() function are surface, 
 
 ---
 
-# 5. Mini Project - Digital Scoreboard v3 - making better themes with shapes (Bonus)
+# 5. Mini Project - Color Picker V3
+
+- Change the color of the shapes

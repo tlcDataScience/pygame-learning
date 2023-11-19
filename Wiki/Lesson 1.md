@@ -6,7 +6,7 @@
 | 2. What is Pygame & its Features? | ---                    |
 | 3. Pygame Basics                  | ---                    |
 | 4. Review Questions               | To check understanding |
-| 5. Mini Project - Color Picker    | Bonus Task             |
+| 5. Mini Project - Color Picker V1 | Bonus Task             |
 
 # 1. Objective
 
@@ -473,7 +473,7 @@ while True:
   c. It changes the background color of the game window based on keyboard input
 </details>
 
-# 5. Mini Project - Color Picker
+# 5. Mini Project - Color Picker V1
 
 - Changing the color of the screen base on the values of r, g, b through the use of keyboard inputs
 - Saving our favourite colors of the color picker by using Lists in Python

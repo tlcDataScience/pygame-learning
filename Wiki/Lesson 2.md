@@ -6,7 +6,7 @@
 | 2. Recap on Pygame Basics         | ---                    |
 | 3. Pygame Text Objects            | ---                    |
 | 4. Review Questions               | To check understanding |
-| 5. Mini Project - Color Picker v2 | Bonus Task             |
+| 5. Mini Project - Color Picker V2 | Bonus Task             |
 
 # 1. Objective
 
@@ -16,7 +16,7 @@
   - Different sizes
   - Different fonts
   - Different position
-- Mini Project - Color picker v2
+- Mini Project - Color picker V2
 
 # 2. Recap on Pygame Basics
 
@@ -539,7 +539,7 @@ c. Pygame.display.set_mode()
 
 ---
 
-# 5. Mini Project - Color Picker v2
+# 5. Mini Project - Color Picker V2
 
 Great job! Let's make some improvements to our color picker.
 Our color picker can change the colors along a gradient. Instead of looking at the console, can we display the r,g,b on the screen itself? Even better, I can move the r,g,b values around the screen. In a nutshell, I want the best of both worlds.

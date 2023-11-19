@@ -26,14 +26,41 @@ We utilize a combination of mini-projects and projects to enable students to del
 | 2      | Pygame Input and Text                        | Yes                        |
 | 3      | Project - Digital Scoreboard V1              | No                         |
 | 4      | Pygame Draw                                  | Yes                        |
-| 5      | Pygame Images                                | Yes                        |
+| 5      | Creating Interactive Objects                 | Yes                        |
 | 6      | Project - Digital Scoreboard V2              | No                         |
-| 7      | Creating Interactive Objects / Timer         | Yes                        |
+| 7      | Timer Pygame Images                          | Yes                        |
 | 8      | Creating Transition States / Menu Navigation | Yes                        |
 | 9      | Project - Digital Scoreboard V3              | No                         |
 | 10     | Project - Growing Sphere                     | No                         |
-| 11     | Project - Falling Drops                      | No                         |
+| 11     | Project - Falling Block                      | No                         |
 | 12     | Project - Snake                              | No                         |
+
+# Pygame Projects
+
+| Project                                                                                         | <div style="width:290px">Description</div>                                                                                                                                                         |
+| :---------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [ColorPickerV1](https://replit.com/@tlcDataScience/ColorPickerV1)                               | - Changing the color of the screen base on the values of r, g, b through the use of keyboard inputs <br>- Saving our favourite colors of the color picker by using Lists in Python                 |
+| [ColorPickerV2](https://replit.com/@tlcDataScience/ColorPickerV2)                               | - Our color picker can change the colors along a gradient. Instead of looking at the console, can we display the r,g,b on the screen itself? <br> - I can move the r,g,b values around the screen. |
+| [ColorPickerV3](https://replit.com/@tlcDataScience/ColorPickerV3)                               | - Change the color of the shapes                                                                                                                                                                   |
+| [DigitalScoreboardV1](https://replit.com/@tlcDataScience/DigitalScoreboardV1)                   | - Basic 2 Player Scoreboard                                                                                                                                                                        |
+| [DigitalScoreboardV2](https://replit.com/@tlcDataScience/DigitalScoreboardV2)                   | - 2 Player Scoreboard with Interactive Bar                                                                                                                                                         |
+| [DigitalScoreboardV3](https://replit.com/@tlcDataScience/DigitalScoreboardV3)                   | - 2 Player Scoreboard with Interactive Bar & Avatar                                                                                                                                                |
+| [DigitalScoreboardV1(Enhanced)](https://replit.com/@tlcDataScience/DigitalScoreboardV1Enhanced) | - Basic 2 Player Scoreboard                                                                                                                                                                        |
+| [DigitalScoreboardV2(Enhanced)](https://replit.com/@tlcDataScience/DigitalScoreboardV2Enhanced) | - 2 Player Scoreboard with Interactive Bar                                                                                                                                                         |
+| [DigitalScoreboardV1(Enhanced)](https://replit.com/@tlcDataScience/DigitalScoreboardV3Enhanced) | - 2 Player Scoreboard with Interactive Bar & Avatar                                                                                                                                                |
+| [AgarioV1](https://replit.com/@tlcDataScience/AgarioV1)                                         | ---                                                                                                                                                                                                |
+| [AgarioV2](https://replit.com/@tlcDataScience/AgarioV2)                                         | ---                                                                                                                                                                                                |
+| [AgarioV3](https://replit.com/@tlcDataScience/AgarioV3)                                         | ---                                                                                                                                                                                                |
+| [FallingBlockV1](https://replit.com/@tlcDataScience/FallingBlockV1)                             | ---                                                                                                                                                                                                |
+| [FallingBlockV2](https://replit.com/@tlcDataScience/FallingBlockV2)                             | ---                                                                                                                                                                                                |
+| [FallingBlockV3](https://replit.com/@tlcDataScience/FallingBlockV3)                             | ---                                                                                                                                                                                                |
+| [SnakeV1](https://replit.com/@tlcDataScience/SnakeV1)                                           | ---                                                                                                                                                                                                |
+| [SnakeV2](https://replit.com/@tlcDataScience/SnakeV2)                                           | ---                                                                                                                                                                                                |
+| [SnakeV3](https://replit.com/@tlcDataScience/SnakeV3)                                           | ---                                                                                                                                                                                                |
+| [DrawV1](https://replit.com/@tlcDataScience/DrawV1)                                             | ---                                                                                                                                                                                                |
+| [TimerV1](https://replit.com/@tlcDataScience/TimerV1)                                           | ---                                                                                                                                                                                                |
+| [MenuV1](https://replit.com/@tlcDataScience/MenuV1)                                             | ---                                                                                                                                                                                                |
+| [ImageV1](https://replit.com/@tlcDataScience/ImageV1)                                           | ---                                                                                                                                                                                                |
 
 ---
 
@@ -42,7 +69,7 @@ We utilize a combination of mini-projects and projects to enable students to del
 - Introduction to Pygame and its features
 - Pygame setup and creating a window
 - Handling keyboard inputs with Pygame
-- Mini Project: Color Picker v1
+- Mini Project: ColorPickerV1
 
 ## Lesson 2 - Pygame Input and Text
 
@@ -51,13 +78,16 @@ We utilize a combination of mini-projects and projects to enable students to del
   - Different sizes
   - Different fonts
   - Different position
-- Mini Project: Color picker v2
+- Mini Project: ColorPickerV2
 
 ## Lesson 3 - Project - Digital Scoreboard V1
 
-- Development Strategy:
-  - Digital Scoreboard v1 - only text
-  - Digital Scoreboard v2 - with color themes (bonus)
+- Project Context
+- Project Requirements
+- Project Concepts
+- Project
+  - DigitalScoreboardV1
+  - DigitalScoreboardV1(Enhanced)
 
 ## Lesson 4 - Pygame Draw
 
@@ -72,19 +102,23 @@ We utilize a combination of mini-projects and projects to enable students to del
 
 ## Lesson 6 - Project - Digital Scoreboard V2
 
-- Development Plan
-- Digital Scoreboard + Bar
+- Project Context
+- Project Requirements
+- Project Concepts
+- Project
+  - DigitalScoreboardV2
+  - DigitalScoreboardV2(Enhanced)
 
 ## Lesson 7 - Creating Interactive Objects / Timer
 
 - Draw multiple objects in Pygame while also displaying text on the screen.
 - Implement dynamic bouncing of the drawn objects based on user input or pre-defined parameters.
-- Mini Project: Bouncing Ball
+- Mini Project: Timer
 
 ## Lesson 8 - Creating Transition States / Menu Navigation
 
 - Transition of states
-- Mini Project:
+- Mini Project: Menu
 
 ## Lesson 9 - Project - Digital Scoreboard V3
 
