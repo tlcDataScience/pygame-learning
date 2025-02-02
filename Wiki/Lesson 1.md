@@ -475,7 +475,95 @@ while True:
 
 # 5. Mini Project - Color Picker V1
 
-- Changing the color of the screen base on the values of r, g, b through the use of keyboard inputs
+- Changing the color of the screen base on the values of r, g, b through the use of keyboard inputs. Starts with black.
 - Saving our favourite colors of the color picker by using Lists in Python
+- Paste the code below into trinket.io/pygame
+- Remember to click on the pygame screen first to ensure the keyboard inputs are controlling the pygame module
 
-[Replit Code](https://replit.com/@tlcDataScience/ColorPickerV1#main.py)
+```python
+import pygame
+
+# Initialize Pygame
+pygame.init()
+
+# Print instructions to the console
+print("Color Picker V1")
+print("Use keys:")
+print("  A to increase red, Z to decrease red")
+print("  S to increase green, X to decrease green")
+print("  D to increase blue, C to decrease blue")
+print("  F to save the current color as a favorite")
+print("Close the window or press CTRL+C in the console to exit.")
+
+# Starting color values
+r, g, b = 0, 0, 0
+
+# List to save favorite colors
+favorites = []
+
+# Window setup
+WINDOW_WIDTH = 400
+WINDOW_HEIGHT = 300
+WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("Color Picker V1")
+
+change_detected = False
+running = True
+
+# Main game loop
+while running:
+    for event in pygame.event.get():
+        # Allow the user to close the window
+        if event.type == pygame.QUIT:
+            running = False
+        
+        # Check for key presses
+        if event.type == pygame.KEYDOWN:
+            change_detected = True
+
+            # Increase or decrease Red
+            if event.key == pygame.K_a:
+                r += 5
+                if r > 255:
+                    r = 255
+            if event.key == pygame.K_z:
+                r -= 5
+                if r < 0:
+                    r = 0
+
+            # Increase or decrease Green
+            if event.key == pygame.K_s:
+                g += 5
+                if g > 255:
+                    g = 255
+            if event.key == pygame.K_x:
+                g -= 5
+                if g < 0:
+                    g = 0
+
+            # Increase or decrease Blue
+            if event.key == pygame.K_d:
+                b += 5
+                if b > 255:
+                    b = 255
+            if event.key == pygame.K_c:
+                b -= 5
+                if b < 0:
+                    b = 0
+
+            # Save the current color when F is pressed
+            if event.key == pygame.K_f:
+                favorites.append((r, g, b))
+                print("Favorite colors:", favorites)
+
+    # If any change occurred, update the screen and print the current color
+    if change_detected:
+        change_detected = False
+        current_color = (r, g, b)
+        print(f"(r, g, b) = {current_color}")
+        WINDOW.fill(current_color)
+        pygame.display.update()
+
+pygame.quit()
+```
+
