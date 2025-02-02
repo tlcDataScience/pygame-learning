@@ -544,4 +544,127 @@ c. Pygame.display.set_mode()
 Great job! Let's make some improvements to our color picker.
 Our color picker can change the colors along a gradient. Instead of looking at the console, can we display the r,g,b on the screen itself? Even better, I can move the r,g,b values around the screen. In a nutshell, I want the best of both worlds.
 
-[Replit Code](https://replit.com/@tlcDataScience/ColorPickerV2#main.py)
+Try this code on trinket.io/pygame:
+
+```python
+import pygame
+
+# Initialize Pygame
+pygame.init()
+
+# -------------------
+# Window Setup
+# -------------------
+WINDOW_WIDTH = 400
+WINDOW_HEIGHT = 300
+WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("Color Picker V2")
+
+# -------------------
+# Initial Color and Text Position
+# -------------------
+# Starting background color (r, g, b)
+r, g, b = 0, 0, 0
+# Padding used for keeping text within the window borders
+PADDING = 20
+# Starting position of the text (center of window)
+text_x = WINDOW_WIDTH // 2
+text_y = WINDOW_HEIGHT // 2
+
+# -------------------
+# Class for Rendering Text Objects
+# -------------------
+class RGBDisplay:
+    def __init__(self, x, y, r, g, b):
+        # Using the built-in font and a font size of 32
+        self.font = pygame.font.Font('freesansbold.ttf', 32)
+        # Create a label string showing the current RGB values
+        self.label = f"RGB: ({r}, {g}, {b})"
+        # Render the text: antialiasing is True, font color is black, background is white
+        self.textSurface = self.font.render(self.label, True, (0, 0, 0), (255, 255, 255))
+        # Get the rectangular area of the text and center it at (x, y)
+        self.textRect = self.textSurface.get_rect(center=(x, y))
+
+# -------------------
+# Main Loop Setup
+# -------------------
+clock = pygame.time.Clock()
+running = True
+
+while running:
+    # Update the background color based on current (r, g, b) values
+    current_color = (r, g, b)
+    WINDOW.fill(current_color)
+
+    # Create a text object to display the current RGB values at (text_x, text_y)
+    rgb_display = RGBDisplay(text_x, text_y, r, g, b)
+    WINDOW.blit(rgb_display.textSurface, rgb_display.textRect)
+
+    # Process events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        if event.type == pygame.KEYDOWN:
+            # Press Q to quit
+            if event.key == pygame.K_q:
+                running = False
+
+            # -------------------
+            # Color Changing Controls
+            # -------------------
+            # Increase or decrease the red component
+            if event.key == pygame.K_a:   # Increase red
+                r += 5
+                if r > 255:
+                    r = 255
+            if event.key == pygame.K_z:   # Decrease red
+                r -= 5
+                if r < 0:
+                    r = 0
+
+            # Increase or decrease the green component
+            if event.key == pygame.K_s:   # Increase green
+                g += 5
+                if g > 255:
+                    g = 255
+            if event.key == pygame.K_x:   # Decrease green
+                g -= 5
+                if g < 0:
+                    g = 0
+
+            # Increase or decrease the blue component
+            if event.key == pygame.K_d:   # Increase blue
+                b += 5
+                if b > 255:
+                    b = 255
+            if event.key == pygame.K_c:   # Decrease blue
+                b -= 5
+                if b < 0:
+                    b = 0
+
+            # -------------------
+            # Text Movement Controls (using arrow keys)
+            # -------------------
+            if event.key == pygame.K_LEFT:
+                text_x -= 10
+                if text_x < PADDING:
+                    text_x = PADDING
+            if event.key == pygame.K_RIGHT:
+                text_x += 10
+                if text_x > WINDOW_WIDTH - PADDING:
+                    text_x = WINDOW_WIDTH - PADDING
+            if event.key == pygame.K_UP:
+                text_y -= 10
+                if text_y < PADDING:
+                    text_y = PADDING
+            if event.key == pygame.K_DOWN:
+                text_y += 10
+                if text_y > WINDOW_HEIGHT - PADDING:
+                    text_y = WINDOW_HEIGHT - PADDING
+
+    pygame.display.update()
+    clock.tick(60)
+
+pygame.quit()
+```
