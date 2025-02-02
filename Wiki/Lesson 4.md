@@ -527,3 +527,156 @@ Explanation: The parameters for the pygame.draw.ellipse() function are surface, 
 # 5. Mini Project - Color Picker V3
 
 - Change the color of the shapes
+- Understand each component of the code and all of the possible actions
+
+```python
+import pygame
+
+# Initialize Pygame
+pygame.init()
+
+# -------------------
+# Window Setup
+# -------------------
+WINDOW_WIDTH = 600
+WINDOW_HEIGHT = 400
+WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("Color Picker V3: Shapes")
+
+# -------------------
+# Define some basic colors (for background, etc.)
+# -------------------
+WHITE = (255, 255, 255)
+
+# -------------------
+# Initial Colors for Each Shape (stored as lists so we can change their values)
+# -------------------
+# Circle starts as red, square as green, triangle as blue, pentagon as yellow.
+circle_color   = [255, 0, 0]      # Red
+square_color   = [0, 255, 0]      # Green
+triangle_color = [0, 0, 255]      # Blue
+pentagon_color = [255, 255, 0]    # Yellow
+
+# -------------------
+# Define Positions and Sizes for the Shapes
+# -------------------
+# Circle: center at (100, 100) with radius 50.
+circle_center = (100, 100)
+circle_radius = 50
+
+# Square: a rectangle at (250, 50) with width 100 and height 100.
+square_rect = pygame.Rect(250, 50, 100, 100)
+
+# Triangle: three points (vertices).
+triangle_points = [(100, 250), (50, 350), (150, 350)]
+
+# Pentagon: five vertices.
+pentagon_points = [(400, 250), (450, 280), (430, 350), (370, 350), (350, 280)]
+
+# -------------------
+# Helper Function to Clamp Color Values
+# -------------------
+def clamp_color(value):
+    """Ensure the color component stays between 0 and 255."""
+    if value < 0:
+        return 0
+    if value > 255:
+        return 255
+    return value
+
+# -------------------
+# Main Game Loop
+# -------------------
+clock = pygame.time.Clock()
+running = True
+
+while running:
+    # Fill the background with white
+    WINDOW.fill(WHITE)
+    
+    # -------------------
+    # Process Events
+    # -------------------
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        # Check for key presses
+        if event.type == pygame.KEYDOWN:
+            # ----- Circle Color Controls (keys 1,2,3,4,5,6) -----
+            if event.key == pygame.K_1:  # Increase red for circle
+                circle_color[0] = clamp_color(circle_color[0] + 5)
+            elif event.key == pygame.K_2:  # Decrease red for circle
+                circle_color[0] = clamp_color(circle_color[0] - 5)
+            elif event.key == pygame.K_3:  # Increase green for circle
+                circle_color[1] = clamp_color(circle_color[1] + 5)
+            elif event.key == pygame.K_4:  # Decrease green for circle
+                circle_color[1] = clamp_color(circle_color[1] - 5)
+            elif event.key == pygame.K_5:  # Increase blue for circle
+                circle_color[2] = clamp_color(circle_color[2] + 5)
+            elif event.key == pygame.K_6:  # Decrease blue for circle
+                circle_color[2] = clamp_color(circle_color[2] - 5)
+
+            # ----- Square Color Controls (keys Q, W, E, R, T, Y) -----
+            elif event.key == pygame.K_q:  # Increase red for square
+                square_color[0] = clamp_color(square_color[0] + 5)
+            elif event.key == pygame.K_w:  # Decrease red for square
+                square_color[0] = clamp_color(square_color[0] - 5)
+            elif event.key == pygame.K_e:  # Increase green for square
+                square_color[1] = clamp_color(square_color[1] + 5)
+            elif event.key == pygame.K_r:  # Decrease green for square
+                square_color[1] = clamp_color(square_color[1] - 5)
+            elif event.key == pygame.K_t:  # Increase blue for square
+                square_color[2] = clamp_color(square_color[2] + 5)
+            elif event.key == pygame.K_y:  # Decrease blue for square
+                square_color[2] = clamp_color(square_color[2] - 5)
+
+            # ----- Triangle Color Controls (keys A, S, D, F, G, H) -----
+            elif event.key == pygame.K_a:  # Increase red for triangle
+                triangle_color[0] = clamp_color(triangle_color[0] + 5)
+            elif event.key == pygame.K_s:  # Decrease red for triangle
+                triangle_color[0] = clamp_color(triangle_color[0] - 5)
+            elif event.key == pygame.K_d:  # Increase green for triangle
+                triangle_color[1] = clamp_color(triangle_color[1] + 5)
+            elif event.key == pygame.K_f:  # Decrease green for triangle
+                triangle_color[1] = clamp_color(triangle_color[1] - 5)
+            elif event.key == pygame.K_g:  # Increase blue for triangle
+                triangle_color[2] = clamp_color(triangle_color[2] + 5)
+            elif event.key == pygame.K_h:  # Decrease blue for triangle
+                triangle_color[2] = clamp_color(triangle_color[2] - 5)
+
+            # ----- Pentagon Color Controls (keys Z, X, C, V, B, N) -----
+            elif event.key == pygame.K_z:  # Increase red for pentagon
+                pentagon_color[0] = clamp_color(pentagon_color[0] + 5)
+            elif event.key == pygame.K_x:  # Decrease red for pentagon
+                pentagon_color[0] = clamp_color(pentagon_color[0] - 5)
+            elif event.key == pygame.K_c:  # Increase green for pentagon
+                pentagon_color[1] = clamp_color(pentagon_color[1] + 5)
+            elif event.key == pygame.K_v:  # Decrease green for pentagon
+                pentagon_color[1] = clamp_color(pentagon_color[1] - 5)
+            elif event.key == pygame.K_b:  # Increase blue for pentagon
+                pentagon_color[2] = clamp_color(pentagon_color[2] + 5)
+            elif event.key == pygame.K_n:  # Decrease blue for pentagon
+                pentagon_color[2] = clamp_color(pentagon_color[2] - 5)
+
+    # -------------------
+    # Draw the Shapes with Their Current Colors
+    # -------------------
+    # Draw Circle
+    pygame.draw.circle(WINDOW, tuple(circle_color), circle_center, circle_radius)
+    # Draw Square (rectangle)
+    pygame.draw.rect(WINDOW, tuple(square_color), square_rect)
+    # Draw Triangle using a polygon with 3 vertices
+    pygame.draw.polygon(WINDOW, tuple(triangle_color), triangle_points)
+    # Draw Pentagon using a polygon with 5 vertices
+    pygame.draw.polygon(WINDOW, tuple(pentagon_color), pentagon_points)
+
+    # Update the display so the new shapes/colors appear
+    pygame.display.flip()
+
+    # Limit the frame rate to 60 frames per second
+    clock.tick(60)
+
+# Quit Pygame when the loop ends
+pygame.quit()
+```
